@@ -1,0 +1,122 @@
+﻿@using UserApp.Models.Products
+@model List<Product>
+
+<div class="container-fluid py-4">
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold mb-0">Products</h3>
+            <small class="text-muted">Manage your inventory</small>
+        </div>
+
+        <a asp-action="CreateProduct" class="btn btn-primary px-4 shadow-sm rounded-3">
+            + Add Product
+        </a>
+    </div>
+
+    <!-- CARD -->
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-body p-0">
+
+            <div class="table-responsive">
+                <table class="table align-middle mb-0">
+
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-4">Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th class="text-center pe-4">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @if (Model == null || !Model.Any())
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center py-5 text-muted">
+                                    No products available
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr class="product-row">
+
+                                    <!-- PRODUCT -->
+                                    <td class="ps-4">
+                                        <div class="d-flex align-items-center">
+
+                                            <!-- Image -->
+                                            <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "/images/no-image.png" : item.ImageUrl)"
+                                                 class="rounded"
+                                                 style="width:50px;height:50px;object-fit:cover;margin-right:10px;" />
+
+                                            <div>
+                                                <div class="fw-semibold">@item.ProductName</div>
+                                                <small class="text-muted">@item.ProductDescription</small>
+                                            </div>
+
+                                        </div>
+                                    </td>
+
+                                    <!-- CATEGORY -->
+                                    <td>
+                                        <span class="badge bg-secondary">
+                                            @item.Category?.CategoryName
+                                        </span>
+                                    </td>
+
+                                    <!-- PRICE -->
+                                    <td class="fw-semibold text-success">
+                                        Rs @item.ProductPrice
+                                    </td>
+
+                                    <!-- STOCK -->
+                                    <td>
+                                        @if (item.Stock == "Out")
+                                        {
+                                            <span class="badge bg-danger">Out of Stock</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-success">@item.Stock</span>
+                                        }
+                                    </td>
+
+                                    <!-- ACTIONS -->
+                                    <td class="text-center pe-4">
+
+                                        <a asp-action="EditProduct"
+                                           asp-route-id="@item.ProductId"
+                                           class="btn btn-sm btn-outline-warning me-1 rounded-3 px-3">
+                                            Edit
+                                        </a>
+
+                                        <a asp-action="DeleteProduct"
+                                           asp-route-id="@item.ProductId"
+                                           class="btn btn-sm btn-outline-danger rounded-3 px-3">
+                                            Delete
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>

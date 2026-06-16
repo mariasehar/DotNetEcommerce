@@ -1,0 +1,92 @@
+﻿@using UserApp.Models.Products
+@model Product
+
+<div class="container-fluid py-4">
+
+    <!-- HEADER -->
+    <div class="mb-4">
+        <h3 class="fw-bold mb-0">Add Product</h3>
+        <small class="text-muted">Create a new product in your system</small>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form asp-action="CreateProduct" asp-controller="Product" method="post">
+
+        <div class="row g-4">
+
+            <!-- LEFT SIDE -->
+            <div class="col-md-8">
+
+                <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                    <!-- Product Name -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Product Name</label>
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                        <input asp-for="ProductName" class="form-control form-control-lg rounded-3" placeholder="Enter product name" />
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Description</label>
+                        <textarea asp-for="ProductDescription" rows="4"
+                                  class="form-control rounded-3"
+                                  placeholder="Write product description..."></textarea>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Image URL</label>
+                        <input asp-for="ImageUrl" class="form-control rounded-3" placeholder="Paste image URL" />
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="col-md-4">
+
+                <div class="card border-0 shadow-sm rounded-4 p-4">
+
+                    <!-- Category -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Category</label>
+                       <select asp-for="CategoryId"
+        asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "CategoryName"))"
+        class="form-select">
+    <option value="0">Select Category</option>
+</select>
+                        </select>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Price</label>
+                        <input asp-for="ProductPrice" type="number"
+                               class="form-control rounded-3"
+                               placeholder="Enter price" />
+                    </div>
+
+                    <!-- Stock -->
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Stock</label>
+                        <input asp-for="Stock" class="form-control rounded-3"
+                               placeholder="In Stock / Out of Stock" />
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary rounded-3 py-2 fw-semibold">
+                            Save Product
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>

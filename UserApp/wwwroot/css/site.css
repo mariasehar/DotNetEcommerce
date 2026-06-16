@@ -1,0 +1,83 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+/* Sidebar base */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, #1e3c72, #2a5298);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+}
+
+/* Header (glass + premium feel) */
+.sidebar-header {
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    margin-bottom: 20px;
+}
+
+    .sidebar-header h4 {
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+/* Nav links */
+.sidebar .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+    /* Hover effect */
+    .sidebar .nav-link:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        transform: translateX(6px);
+    }
+
+    /* Active link (optional but powerful) */
+    .sidebar .nav-link.active {
+        background: #fff;
+        color: #1e3c72 !important;
+        font-weight: 600;
+    }
+.table-fixed {
+    table-layout: fixed;
+    width: 100%;
+}
+
+td, th {
+    vertical-align: middle;
+}
